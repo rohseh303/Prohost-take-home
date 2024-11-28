@@ -1,14 +1,26 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Sidebar } from './components/layout/Sidebar';
+import { CalendarPage } from './components/pages/CalendarPage';
 
 function App() {
   return (
-    <div className="flex min-h-screen bg-gray-50">
-      <Sidebar />
-      <main className="flex-1 p-8">
-        <h1 className="text-2xl font-semibold text-gray-900">Welcome to ProhostAI</h1>
-      </main>
-    </div>
+    <BrowserRouter>
+      <div className="flex min-h-screen bg-white">
+        <Sidebar />
+        <main className="flex-1 p-2">
+          <Routes>
+            <Route path="/" element={
+              <h1 className="text-2xl font-semibold text-gray-900">Select a page</h1>
+            } />
+            <Route path="/calendar" element={<CalendarPage />} />
+            <Route path="*" element={
+              <h1 className="text-2xl font-semibold text-gray-900">Not implemented</h1>
+            } />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
   );
 }
 
