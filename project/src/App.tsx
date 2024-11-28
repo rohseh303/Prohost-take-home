@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Sidebar } from './components/layout/Sidebar';
-import { CalendarPage } from './components/pages/CalendarPage';
+import { CalendarPage } from './components/layout/CalendarPage';
 
 function App() {
   return (
     <BrowserRouter>
       <div className="flex min-h-screen bg-white">
-        <Sidebar />
+        <Sidebar className="w-64" />
         <main className="flex-1 p-2">
           <Routes>
             <Route path="/" element={

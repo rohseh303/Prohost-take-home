@@ -1,11 +1,14 @@
 import React from 'react';
-import { type CalendarDay } from './types/calendar';
+import { type CalendarDay } from '../types/calendar';
+import { formatPrice } from '../utils/dateUtils';
 
 interface CalendarCellProps {
   day: CalendarDay;
 }
 
 export default function CalendarCell({ day }: CalendarCellProps) {
+  const isToday = new Date(day.date).toDateString() === new Date().toDateString();
+
   if (day.reservation) {
     return (
       <div className="min-w-[120px] h-16 bg-blue-600 text-white p-2 flex items-center gap-2">
@@ -16,15 +19,17 @@ export default function CalendarCell({ day }: CalendarCellProps) {
         />
         <div className="flex flex-col">
           <span className="text-xs">{day.reservation.guestName}</span>
-          <span className="text-xs font-medium">${day.reservation.totalAmount.toLocaleString()}</span>
+          <span className="text-xs font-medium">{formatPrice(day.reservation.totalAmount)}</span>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-w-[120px] h-16 border-r border-gray-200 p-2 flex flex-col justify-center">
-      <span className="text-sm text-gray-900">${day.price}</span>
+    <div className={`min-w-[120px] h-16 border-r border-gray-200 p-2 flex flex-col justify-center ${
+      isToday ? 'bg-blue-50' : ''
+    }`}>
+      <span className="text-sm text-gray-900">{formatPrice(day.price)}</span>
       <span className="text-xs text-gray-500">1D</span>
     </div>
   );
