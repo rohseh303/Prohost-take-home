@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { NavigationItem } from '@/types/navigation';
 import { cn } from '@/lib/utils';
 import * as Icons from 'lucide-react';
@@ -12,8 +13,8 @@ export function NavLink({ item }: NavLinkProps) {
   const isActive = window.location.pathname === item.href;
   
   return (
-    <a
-      href={item.href}
+    <Link
+      to={item.href}
       className={cn(
         'flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors',
         'hover:bg-gray-100',
@@ -27,6 +28,6 @@ export function NavLink({ item }: NavLinkProps) {
           {item.count}
         </span>
       )}
-    </a>
+    </Link>
   );
 }
