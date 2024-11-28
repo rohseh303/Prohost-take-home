@@ -9,9 +9,6 @@ export default function CalendarHeader({ dates }: CalendarHeaderProps) {
 
   return (
     <div className="flex border-b border-gray-200">
-      <div className="min-w-[200px] p-4 bg-white sticky left-0 z-20 border-r border-gray-200 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.1)]">
-        <span className="font-medium text-sm text-gray-900">Listings</span>
-      </div>
       <div className="flex">
         {dates.map((date) => {
           const isToday = date === today;

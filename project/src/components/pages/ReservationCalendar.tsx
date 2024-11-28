@@ -30,11 +30,20 @@ export default function ReservationCalendar({
   return (
     <div className="bg-white rounded-lg shadow overflow-hidden">
       <div className="relative">
-        <div className="overflow-x-auto" ref={scrollContainerRef}>
-          <div className="sticky top-0 z-20">
+        {/* Horizontal scrollable container */}
+        <div 
+          className="overflow-x-auto w-full"
+          ref={scrollContainerRef}
+        >
+          {/* Sticky header for the calendar */}
+          <div className="sticky top-0 z-20 bg-white">
             <CalendarHeader dates={dates} />
           </div>
-          <div>
+
+          {/* Grid for rows */}
+          <div
+            className="grid grid-flow-row auto-cols-[120px] w-max" 
+          >
             {listings.map((listing) => (
               <ListingRow
                 key={listing.id}
