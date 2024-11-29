@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReservationCalendar from '../pages/ReservationCalendar';
-import { calendarDays, dates } from '../data/sampleData';
 import { Header } from './Header';
 import { Listing } from '../types/calendar';
 import { ListingsSidebar } from '../pages/ListingsSidebar';
+import { useReservations } from './useReservations';
 
 export function CalendarPage() {
   const [listings, setListings] = useState<Listing[]>([]);
@@ -17,14 +17,22 @@ export function CalendarPage() {
         return response.json();
       })
       .then((data: Listing[]) => {
-        // Ensure the fetched data matches the Listing type
-        console.log("data:", data);
         setListings(data);
       })
       .catch((error) => console.error("Error fetching listings:", error));
   }, []);
+  
+  const { reservations, isLoading, error, earliestCheckIn, latestCheckOut } = useReservations();
 
-  console.log("listings:", listings);
+  // console.log(reservations)
+  if (isLoading) return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="w-12 h-12 border-4 border-blue-200 rounded-full animate-spin border-t-blue-600">
+        <span className="sr-only">Loading...</span>
+      </div>
+    </div>
+  );
+  if (error) return <div>Error: {error}</div>;
 
   return (  
     <div className="space-y-4">
@@ -34,8 +42,9 @@ export function CalendarPage() {
         <div className="w-3/4">
           <ReservationCalendar
             listings={listings}
-            calendarDays={calendarDays}
-            dates={dates}
+            reservations={reservations}
+            earliestCheckIn={earliestCheckIn}
+            latestCheckOut={latestCheckOut}
           />
         </div>
       </div>

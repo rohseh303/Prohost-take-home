@@ -2,9 +2,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import psycopg2
+from dotenv import load_dotenv
+import os
 
-# Database connection URL
-DATABASE_URL = "postgresql://neondb_owner:xWol3Dtp5sfg@ep-crimson-forest-a5iww9qz.us-east-2.aws.neon.tech/backend?sslmode=require"
+load_dotenv()
+
+DATABASE_URL = os.getenv('DATABASE_URL')
 
 # SQLAlchemy setup
 engine = create_engine(DATABASE_URL, echo=True)

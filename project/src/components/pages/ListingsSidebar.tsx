@@ -8,7 +8,7 @@ interface ListingsSidebarProps {
 export function ListingsSidebar({ listings }: ListingsSidebarProps) {
   return (
     <div className="w-1/4">
-      <div className="flex items-center justify-between mb-4 p-5 border-b">
+      <div className="flex items-center justify-between mb-4 p-9 border-b">
         <h2 className="text-lg font-semibold">Listings</h2>
         <button className="p-1">≡</button>
       </div>
@@ -18,6 +18,11 @@ export function ListingsSidebar({ listings }: ListingsSidebarProps) {
             key={listing.id} 
             className="flex items-center gap-3 p-2 hover:bg-gray-50 border-b"
           >
+            <img 
+              src={"https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=400&fit=crop"} 
+              alt={listing.title}
+              className="w-8 h-8 rounded-lg object-cover"
+            />
             <span className="font-medium text-[15px] leading-5 text-gray-900">
               {listing.title}
             </span>

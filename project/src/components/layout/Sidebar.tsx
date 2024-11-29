@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from './NavLink';
 import { navigationItems } from '@/config/navigation';
-import { Logo } from './Logo';
+import logo from '../assets/logo.jpeg';
 
 interface SidebarProps {
   className?: string;
@@ -14,7 +14,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ className }) => {
     <div className={`bg-gray-200 ${className}`}>
       <aside className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col">
         <div className="p-4">
-          <Logo />
+        <div className="flex items-center gap-2">
+      <img src={logo} alt="Custom Logo" className="w-8 h-8" />
+            <span className="font-semibold text-xl">ProhostAI</span>
+          </div>
         </div>
         
         <nav className="flex-1 px-3 py-2">
