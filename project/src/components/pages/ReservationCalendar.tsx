@@ -23,7 +23,7 @@ export default function ReservationCalendar({
       const todayIndex = dates.indexOf(today);
       const cellWidth = 120; // width of each cell
       const scrollPosition = Math.max(0, (todayIndex * cellWidth) - (window.innerWidth / 2) + 200);
-      scrollContainerRef.current.scrollLeft = scrollPosition;
+      scrollContainerRef.current.scrollLeft = scrollPosition+600;
     }
   }, [dates]);
 

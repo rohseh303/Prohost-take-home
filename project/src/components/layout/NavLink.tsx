@@ -6,19 +6,22 @@ import * as Icons from 'lucide-react';
 
 interface NavLinkProps {
   item: NavigationItem;
+  isSelected?: boolean;
+  onClick?: () => void;
 }
 
-export function NavLink({ item }: NavLinkProps) {
+export function NavLink({ item, isSelected, onClick }: NavLinkProps) {
   const Icon = Icons[item.icon as keyof typeof Icons];
-  const isActive = window.location.pathname === item.href;
   
   return (
     <Link
       to={item.href}
+      onClick={onClick}
       className={cn(
         'flex items-center gap-3 px-3 py-2 text-sm rounded-md transition-colors',
-        'hover:bg-gray-100',
-        isActive ? 'text-blue-600 bg-blue-50' : 'text-gray-700'
+        isSelected 
+          ? 'text-gray-900 bg-gray-200 hover:bg-gray-200' 
+          : 'text-gray-700 hover:bg-gray-100'
       )}
     >
       <Icon className="w-5 h-5" />
