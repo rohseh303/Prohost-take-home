@@ -29,8 +29,10 @@ export default function CalendarCell({ day }: CalendarCellProps) {
     <div className={`min-w-[120px] h-16 border-r border-gray-200 p-2 flex flex-col justify-center ${
       isToday ? 'bg-blue-50' : ''
     }`}>
-      <span className="text-sm text-gray-900">{formatPrice(day.price)}</span>
-      <span className="text-xs text-gray-500">1D</span>
+      <span className="text-sm text-gray-900 text-center">{formatPrice(day.price)}</span>
+      {new Date(day.date) >= new Date(new Date().setHours(0, 0, 0, 0)) && (
+        <span className="text-xs text-purple-500 text-center">1D</span>
+      )}
     </div>
   );
 }

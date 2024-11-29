@@ -1,7 +1,7 @@
 export interface Listing {
   id: string;
-  name: string;
-  image: string;
+  title: string;
+  description: string;
 }
 
 export interface Reservation {

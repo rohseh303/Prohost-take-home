@@ -16,15 +16,18 @@ export default function CalendarHeader({ dates }: CalendarHeaderProps) {
             <div 
               key={date} 
               className={`min-w-[120px] p-4 border-r border-gray-200 ${
-                isToday ? 'bg-blue-50' : 'bg-white'
+                isToday ? 'bg-purple-100' : 'bg-white'
               }`}
             >
-              <div className="text-sm font-medium text-gray-900">
-                {new Date(date).toLocaleDateString('en-US', { 
-                  weekday: 'short',
-                  month: 'short',
+              <div className={`text-sm font-medium ${
+                isToday ? 'text-purple-600' : 'text-gray-900'
+              } flex flex-col items-center`}>
+                <div>{new Date(date).toLocaleDateString('en-US', { 
+                  weekday: 'short'
+                })}</div>
+                <div>{new Date(date).toLocaleDateString('en-US', { 
                   day: 'numeric'
-                })}
+                })}</div>
               </div>
             </div>
           );
