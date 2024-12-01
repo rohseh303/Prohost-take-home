@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ListingGroup, Reservation } from '../types/calendar';
+import { ListingGroup } from '../types/calendar';
 
 export function useReservations() {
   const [reservations, setReservations] = useState<ListingGroup[]>([]);

@@ -115,7 +115,6 @@ export default function ReservationCalendar({
   const gridRef = useRef<any>(null);
 
   const handleScroll = ({ scrollLeft }: { scrollLeft: number }) => {
-    // You can update the current day based on scrollLeft
     const visibleColumnIndex = Math.floor(scrollLeft / cellWidth);
     const date = headerDates[visibleColumnIndex];
     if (date) {
@@ -150,7 +149,8 @@ export default function ReservationCalendar({
         <div className="w-full">
           {/* Shared scroll container */}
           <div
-            className="overflow-auto"
+            // className="overflow-auto"
+            className="overflow-auto scrollbar-hide"
             ref={scrollContainerRef}
             style={{ position: 'relative', height: '600px' }} // Adjust height as needed
           >
