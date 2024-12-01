@@ -20,7 +20,7 @@ const CalendarMonth: React.FC<CalendarMonthProps> = ({ currentDay }) => {
   }, [currentDay]);
 
   return (
-    <h2 className="text-lg font-bold">
+    <h2 className="text-lg font-bold p-2">
       {new Date(currentYear, currentMonth).toLocaleString('default', { month: 'long', year: 'numeric' })}
     </h2>
   )

@@ -16,9 +16,3 @@ export interface ListingGroup {
   listing_id: string;
   reservations: Reservation[];
 }
-
-export interface CalendarDay {
-  date: string;
-  price: number;
-  reservation?: Reservation;
-}

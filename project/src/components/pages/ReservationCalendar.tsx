@@ -2,8 +2,6 @@ import React, { useRef, useState, useEffect } from 'react';
 import { FixedSizeGrid as Grid } from 'react-window';
 import { addDays, parseISO, differenceInDays } from 'date-fns';
 import { Reservation, type Listing, type ListingGroup } from '../types/calendar';
-import ListingRow from './ListingRow';
-import CalendarHeader from './CalendarHeader';
 import CalendarMonth from './CalendarMonth';
 import CalendarCell from './CalendarCell';
 
