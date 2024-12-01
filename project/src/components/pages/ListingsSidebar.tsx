@@ -7,7 +7,7 @@ interface ListingsSidebarProps {
 
 export function ListingsSidebar({ listings }: ListingsSidebarProps) {
   return (
-    <div className="w-1/4">
+    <div className="flex-grow">
       <div className="flex items-center justify-between mb-4 p-9 border-b">
         <h2 className="text-lg font-semibold">Listings</h2>
         <button className="p-1">≡</button>

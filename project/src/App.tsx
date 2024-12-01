@@ -7,8 +7,8 @@ function App() {
   return (
     <BrowserRouter>
       <div className="flex min-h-screen bg-white">
-        <Sidebar className="w-64" />
-        <main className="flex-1 p-2 max-w-5xl mx-auto">
+        <Sidebar className="flex-none" />
+        <main className="flex-1 p-2 mx-auto">
           <Routes>
             <Route path="/" element={
               <h1 className="text-2xl font-semibold text-gray-900">Select a page</h1>

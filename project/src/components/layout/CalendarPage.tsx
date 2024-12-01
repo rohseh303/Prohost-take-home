@@ -37,8 +37,10 @@ export function CalendarPage() {
     <div className="space-y-4">
       <Header />
       <div className="flex gap-4">
-        <ListingsSidebar listings={listings} />
-        <div className="w-3/4">
+        <div className="w-1/5">
+          <ListingsSidebar listings={listings} />
+        </div>
+        <div className="w-4/5">
           <ReservationCalendar
             listings={listings}
             reservations={reservations}
