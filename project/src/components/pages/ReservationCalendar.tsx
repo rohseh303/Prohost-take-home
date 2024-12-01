@@ -62,7 +62,7 @@ export default function ReservationCalendar({
         <div
           style={{
             ...style,
-            backgroundColor: isToday ? '#E5E7EB' : '#F9FAFB',
+            backgroundColor: isToday ? '#E5E7EB' : '#FFFFFF',
             borderRight: '1px solid #E5E7EB',
             borderBottom: '1px solid #E5E7EB',
             boxSizing: 'border-box',
