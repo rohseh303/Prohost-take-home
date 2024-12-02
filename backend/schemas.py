@@ -8,6 +8,7 @@ class Reservation(BaseModel):
     listing_id: UUID
     account_id: UUID
     channel_id: int
+    channel: str | None
     guest_first_name: str
     guest_last_name: str
     guest_email: str
@@ -36,10 +37,19 @@ class Reservation(BaseModel):
     class Config:
         orm_mode = True
 
-class Listing(BaseModel):
+class ListingPhoto(BaseModel):
     id: int
+    listing_id: UUID
+    url: str
+
+    class Config:
+        orm_mode = True
+
+class Listing(BaseModel):
+    id: UUID
     title: str
     description: str
+    photo_url: str | None
     reservations: List[Reservation] = []
 
     class Config:

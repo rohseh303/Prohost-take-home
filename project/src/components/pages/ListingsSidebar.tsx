@@ -19,7 +19,7 @@ export function ListingsSidebar({ listings }: ListingsSidebarProps) {
             className="flex items-center gap-3 p-2 hover:bg-gray-50 border-b"
           >
             <img 
-              src={"https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=400&h=400&fit=crop"} 
+              src={listing.photo_url} 
               alt={listing.title}
               className="w-8 h-8 rounded-lg object-cover"
             />

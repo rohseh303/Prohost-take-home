@@ -9,7 +9,8 @@ export function CalendarPage() {
   const [listings, setListings] = useState<Listing[]>([]);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/listings/")
+    let retries = 3;
+    const fetchData = () => fetch("http://127.0.0.1:8000/listings/")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch listings");
@@ -19,7 +20,16 @@ export function CalendarPage() {
       .then((data: Listing[]) => {
         setListings(data);
       })
-      .catch((error) => console.error("Error fetching listings:", error));
+      .catch((error) => {
+        if (retries > 0) {
+          retries--;
+          setTimeout(fetchData, 1000); // Retry after 1 second
+        } else {
+          console.error("Error fetching listings:", error);
+        }
+      });
+      
+    fetchData();
   }, []);
   
   const { reservations, isLoading, error, earliestCheckIn, latestCheckOut } = useReservations();
@@ -37,10 +47,10 @@ export function CalendarPage() {
     <div className="space-y-4">
       <Header />
       <div className="flex gap-4">
-        <div className="w-1/5">
+        <div className="w-1/4">
           <ListingsSidebar listings={listings} />
         </div>
-        <div className="w-4/5">
+        <div className="w-3/4">
           <ReservationCalendar
             listings={listings}
             reservations={reservations}

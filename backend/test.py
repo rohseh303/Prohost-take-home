@@ -6,10 +6,7 @@ def test_listings():
     if response.status_code == 200:
         print("Listings fetched successfully:")
         for listing in response.json():
-            print(f"ID: {listing['id']}")
-            print(f"Title: {listing['title']}")
-            print(f"Description: {listing['description']}")
-            print("-" * 50)
+            print(listing)
     else:
         print(f"Error fetching listings: {response.status_code}")
         try:
@@ -27,9 +24,10 @@ def test_reservations():
             print(f"\nListing ID: {listing_group['listing_id']}")
             for reservation in listing_group['reservations']:
                 print(f"  Reservation ID: {reservation['id']}")
-                print(f"  Guest: {reservation['guest_first_name']} {reservation['guest_last_name']}")
-                print(f"  Check-in: {reservation['check_in_at']}")
-                print(f"  Check-out: {reservation['check_out_at']}")
+                # print(f"  Guest: {reservation['guest_first_name']} {reservation['guest_last_name']}")
+                # print(f"  Check-in: {reservation['check_in_at']}")
+                # print(f"  Check-out: {reservation['check_out_at']}")
+                print(f"  Channel: {reservation['channel']}")
                 print("  " + "-" * 40)
     else:
         print(f"Error fetching reservations: {response.status_code}")
@@ -40,5 +38,5 @@ def test_reservations():
             print(f"Raw error response: {response.text}")
 
 if __name__ == "__main__":
-    test_listings()
+    # test_listings()
     test_reservations()

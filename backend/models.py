@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String, DateTime, UUID
+from sqlalchemy import Column, Integer, String, DateTime, UUID, ForeignKey
 from sqlalchemy.sql import func
-from database import Base
+from .database import Base
 
 class Listing(Base):
     __tablename__ = "listings"
@@ -17,11 +17,11 @@ class Reservation(Base):
     check_in_at = Column(DateTime(timezone=True), nullable=True)
     check_out_at = Column(DateTime(timezone=True), nullable=True)
     guest_photo_url = Column(String, nullable=True)
+    channel_id = Column(Integer, nullable=True)
 
     # Commented out fields for future use if needed
     """
     account_id = Column(UUID)
-    channel_id = Column(Integer)
     guest_email = Column(String, nullable=True)
     guest_phone = Column(String, nullable=True)
     guest_address = Column(String, nullable=True)
@@ -42,3 +42,16 @@ class Reservation(Base):
     source_conversation_id = Column(String, nullable=True)
     booked_at = Column(DateTime(timezone=True), nullable=True)
     """
+
+class ListingPhoto(Base):
+    __tablename__ = 'listing_photos'
+    id = Column(Integer, primary_key=True, index=True)
+    listing_id = Column(UUID, ForeignKey('listings.id'))
+    url = Column(String)
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
+    updated_at = Column(DateTime(timezone=True), onupdate=func.now())
+
+class ReservationChannel(Base):
+    __tablename__ = "reservation_channels"
+    id = Column(Integer, primary_key=True, index=True)
+    channel = Column(String, nullable=False)

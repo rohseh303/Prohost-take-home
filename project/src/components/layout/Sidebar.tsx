@@ -12,7 +12,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ className }) => {
 
   return (
     <div className={`bg-gray-200 ${className}`}>
-      <aside className="w-64 h-screen bg-white border-r border-gray-200 flex flex-col">
+      <aside className="w-64 h-full bg-white border-r border-gray-200 flex flex-col">
         <div className="p-4">
           <div className="flex items-center gap-2">
             <img src={logo} alt="Custom Logo" className="w-8 h-8" />
