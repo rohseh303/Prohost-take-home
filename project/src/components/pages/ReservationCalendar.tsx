@@ -71,9 +71,6 @@ export default function ReservationCalendar({
         span,
         rowIndex: listings.findIndex((listing) => listing.id === group.listing_id) + 1, // +1 for header row
       };
-      if (res.guest_first_name === 'Sujin') {
-        console.log("Reservation position: ", position);
-      }
       return position;
     });
   });
@@ -161,7 +158,7 @@ export default function ReservationCalendar({
             backgroundColor: todayColumnIndex === columnIndex ? '#f1f1fb' : '#f9fafb',
           }}
         >
-          <CalendarCell day={reservation} isReservationCell={isReservationCell} />
+          <CalendarCell day={reservation}/>
         </div>
       );
     }
@@ -191,7 +188,7 @@ export default function ReservationCalendar({
       // Check if today is within the range
       if (today >= startDate && today <= endDate) {
         const index = differenceInDays(today, startDate);
-  
+
         gridRef.current.scrollToItem({
           columnIndex: index,
           rowIndex: 0,
@@ -218,7 +215,6 @@ export default function ReservationCalendar({
               onScroll={handleScroll}
               columnCount={columnCount}
               columnWidth={cellWidth}
-              // height={Infinity}
               height={rowCount * cellHeight}
               rowCount={rowCount}
               rowHeight={cellHeight}

@@ -16,9 +16,6 @@ interface ReservationBarProps {
   }
 
 const ReservationBar: React.FC<ReservationBarProps> = ({ reservation, cellWidth, cellHeight }) => {
-    if (reservation.guest_first_name === 'Matthew' || reservation.guest_first_name === 'Jessica') {
-        console.log(reservation.guest_first_name, reservation.guest_last_name, reservation.startIndex, reservation.span, reservation.check_in_at, reservation.check_out_at);
-    }
     const { startIndex, span, rowIndex } = reservation;
     const left = (startIndex + 1) * cellWidth + cellWidth / 2;
     const width = (span * cellWidth) - 25;
