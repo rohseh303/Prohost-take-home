@@ -20,7 +20,7 @@ export default function ReservationCalendar({
   earliestCheckIn,
   latestCheckOut
 }: ReservationCalendarProps) {
-  const [currentDay, setCurrentDay] = useState<string | null>(null);
+  const [currentDay, setCurrentDay] = useState<string>(new Date().toLocaleDateString('en-CA'));
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
 
   // Generate header dates based on earliestCheckIn and latestCheckOut
@@ -90,7 +90,6 @@ export default function ReservationCalendar({
           reservation={reservation}
           cellWidth={cellWidth}
           cellHeight={cellHeight}
-          // columnCount={columnCount}
         />
       ))}
     </div>
@@ -98,17 +97,19 @@ export default function ReservationCalendar({
 
   // Cell renderer for the grid
   const Cell = React.memo(({ columnIndex, rowIndex, style }: any) => {
+    const date = headerDates[columnIndex];
+    const dateString = date.toLocaleDateString('en-CA');
+    const isToday = dateString === new Date().toLocaleDateString('en-CA');
+    const todayColumnIndex = isToday ? columnIndex : null;
+
     if (rowIndex === 0) {
       // Header row
-      const date = headerDates[columnIndex];
-      const dateString = date.toISOString().split('T')[0];
-      const isToday = dateString === new Date().toISOString().split('T')[0];
 
       return (
         <div
           style={{
             ...style,
-            backgroundColor: isToday ? '#E5E7EB' : '#FFFFFF',
+            backgroundColor: isToday ? '#f1f1fb' : '#FFFFFF',
             borderRight: '1px solid #E5E7EB',
             borderBottom: '1px solid #E5E7EB',
             boxSizing: 'border-box',
@@ -139,23 +140,13 @@ export default function ReservationCalendar({
       const isReservationCell = reservationPositions.some(
         (res) =>
           res.rowIndex === rowIndex &&
-          columnIndex >= res.startIndex &&
+          columnIndex > res.startIndex &&
           columnIndex < res.startIndex + res.span
       );
 
-      if (isReservationCell) {
-        // Return an empty cell to prevent duplicate rendering
-        return <div style={{
-          ...style,
-          borderRight: '1px solid #E5E7EB',
-          borderBottom: '1px solid #E5E7EB',
-          boxSizing: 'border-box',
-        }} />;
-      }
-
       const listing = listings[rowIndex - 1];
       const date = headerDates[columnIndex];
-      const dateString = date.toISOString().split('T')[0];
+      const dateString = date.toLocaleDateString('en-CA');
       const reservation =
         reservationMap[listing.id] &&
         reservationMap[listing.id][dateString];
@@ -167,9 +158,10 @@ export default function ReservationCalendar({
             borderRight: '1px solid #E5E7EB',
             borderBottom: '1px solid #E5E7EB',
             boxSizing: 'border-box',
+            backgroundColor: todayColumnIndex === columnIndex ? '#f1f1fb' : '#f9fafb',
           }}
         >
-          <CalendarCell day={reservation} />
+          <CalendarCell day={reservation} isReservationCell={isReservationCell} />
         </div>
       );
     }
@@ -188,7 +180,7 @@ export default function ReservationCalendar({
       const dateString = date.toLocaleDateString('en-CA');
       setCurrentDay(dateString);
     }
-  }, 150);
+  }, 100);
 
   useEffect(() => {
     if (gridRef.current && earliestCheckIn && latestCheckOut) {
@@ -232,7 +224,7 @@ export default function ReservationCalendar({
               rowHeight={cellHeight}
               width={1200}
               innerElementType={InnerGridElement}
-              overscanColumnCount={30}
+              overscanColumnCount={10}
             >
               {Cell}
             </Grid>
