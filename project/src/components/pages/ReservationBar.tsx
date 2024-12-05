@@ -1,6 +1,5 @@
 import React from 'react'
-// import { formatPrice } from '../utils/dateUtils';
-import { Reservation } from '../types/calendar';
+import { Reservation } from '../../types/calendar';
 
 interface ReservationPosition extends Reservation {
     listingId: string;
@@ -67,9 +66,9 @@ const ReservationBar: React.FC<ReservationBarProps> = ({ reservation, cellWidth,
             }}
             className="w-6 h-6 rounded-full bg-white p-1 -ml-3"
           />
-          <span className="text-white text-xs truncate ml-2">
+          <span className={`text-xs truncate ml-2 ${isPastReservation ? 'text-gray-500' : 'text-white'}`}>
             {reservation.guest_first_name} {reservation.guest_last_name}
-            <span className="ml-2 font-semibold">
+            <span className={`ml-2 font-semibold ${isPastReservation ? 'text-gray-500' : 'text-white'}`}>
               $100
             </span>
           </span>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReservationCalendar from '../pages/ReservationCalendar';
 import { Header } from './Header';
-import { Listing } from '../types/calendar';
+import { Listing } from '../../types/calendar';
 import { ListingsSidebar } from '../pages/ListingsSidebar';
 import { useReservations } from './useReservations';
 

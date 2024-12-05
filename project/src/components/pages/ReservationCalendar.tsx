@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { FixedSizeGrid as Grid } from 'react-window';
 import { addDays, parseISO, differenceInDays } from 'date-fns';
 import throttle from 'lodash.throttle';
-import { Reservation, type Listing, type ListingGroup } from '../types/calendar';
+import { Reservation, type Listing, type ListingGroup } from '../../types/calendar';
 import CalendarMonth from './CalendarMonth';
 import CalendarCell from './CalendarCell';
 import ReservationBar from './ReservationBar';
@@ -133,14 +133,6 @@ export default function ReservationCalendar({
     } else {
       // Listing rows
 
-      // Check if this cell is part of a reservation bar
-      const isReservationCell = reservationPositions.some(
-        (res) =>
-          res.rowIndex === rowIndex &&
-          columnIndex > res.startIndex &&
-          columnIndex < res.startIndex + res.span
-      );
-
       const listing = listings[rowIndex - 1];
       const date = headerDates[columnIndex];
       const dateString = date.toLocaleDateString('en-CA');
@@ -192,7 +184,7 @@ export default function ReservationCalendar({
         gridRef.current.scrollToItem({
           columnIndex: index,
           rowIndex: 0,
-          align: 'start', // You can adjust this to 'center' or 'end' if needed
+          align: 'start',
         });
       }
     }
@@ -205,10 +197,9 @@ export default function ReservationCalendar({
         <div className="w-5/5">
           {/* Shared scroll container */}
           <div
-            // className="overflow-auto"
             className="overflow-auto scrollbar-hide"
             ref={scrollContainerRef}
-            style={{ position: 'relative', height: '100%' }} // Adjust height as needed
+            style={{ position: 'relative', height: '100%' }}
           >
             <Grid
               ref={gridRef}

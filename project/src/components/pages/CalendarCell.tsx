@@ -1,5 +1,5 @@
 import React from 'react';
-import { type Reservation } from '../types/calendar';
+import { type Reservation } from '../../types/calendar';
 
 interface CalendarCellProps {
   day?: Reservation;

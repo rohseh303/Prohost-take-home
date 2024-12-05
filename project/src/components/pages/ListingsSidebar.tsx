@@ -1,5 +1,5 @@
 import React from 'react';
-import { Listing } from '../types/calendar';
+import { Listing } from '../../types/calendar';
 
 interface ListingsSidebarProps {
   listings: Listing[];
